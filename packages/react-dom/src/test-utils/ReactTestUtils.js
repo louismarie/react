@@ -175,11 +175,11 @@ const ReactTestUtils = {
   },
 
   isElement: function(element) {
-    return React.isValidElement(element);
+    return ReactAsmo.isValidElement(element);
   },
 
   isElementOfType: function(inst, convenienceConstructor) {
-    return React.isValidElement(inst) && inst.type === convenienceConstructor;
+    return ReactAsmo.isValidElement(inst) && inst.type === convenienceConstructor;
   },
 
   isDOMComponent: function(inst) {
@@ -187,7 +187,7 @@ const ReactTestUtils = {
   },
 
   isDOMComponentElement: function(inst) {
-    return !!(inst && React.isValidElement(inst) && !!inst.tagName);
+    return !!(inst && ReactAsmo.isValidElement(inst) && !!inst.tagName);
   },
 
   isCompositeComponent: function(inst) {
@@ -375,7 +375,7 @@ const ReactTestUtils = {
     mockTagName = mockTagName || module.mockTagName || 'div';
 
     module.prototype.render.mockImplementation(function() {
-      return React.createElement(mockTagName, null, this.props.children);
+      return ReactAsmo.createElement(mockTagName, null, this.props.children);
     });
 
     return this;
@@ -455,7 +455,7 @@ const ReactTestUtils = {
 function makeSimulator(eventType) {
   return function(domNode, eventData) {
     invariant(
-      !React.isValidElement(domNode),
+      !ReactAsmo.isValidElement(domNode),
       'TestUtils.Simulate expected a DOM node as the first argument but received ' +
         'a React element. Pass the DOM node you wish to simulate the event on instead. ' +
         'Note that TestUtils.Simulate will not work if you are using shallow rendering.',

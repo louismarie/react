@@ -77,7 +77,7 @@ import {validateProperties as validateUnknownProperties} from '../shared/ReactDO
 type ReactNode = string | number | ReactElement;
 type FlatReactChildren = Array<null | ReactNode>;
 type toArrayType = (children: mixed) => FlatReactChildren;
-const toArray = ((React.Children.toArray: any): toArrayType);
+const toArray = ((ReactAsmo.Children.toArray: any): toArrayType);
 
 // This is only used in DEV.
 // Each entry is `this.stack` from a currently executing renderer instance.
@@ -285,7 +285,7 @@ function getNonChildrenInnerMarkup(props) {
 }
 
 function flattenTopLevelChildren(children: mixed): FlatReactChildren {
-  if (!React.isValidElement(children)) {
+  if (!ReactAsmo.isValidElement(children)) {
     return toArray(children);
   }
   const element = ((children: any): ReactElement);
@@ -293,7 +293,7 @@ function flattenTopLevelChildren(children: mixed): FlatReactChildren {
     return [element];
   }
   const fragmentChildren = element.props.children;
-  if (!React.isValidElement(fragmentChildren)) {
+  if (!ReactAsmo.isValidElement(fragmentChildren)) {
     return toArray(fragmentChildren);
   }
   const fragmentChildElement = ((fragmentChildren: any): ReactElement);
@@ -307,7 +307,7 @@ function flattenOptionChildren(children: mixed): ?string {
   let content = '';
   // Flatten children and warn if they aren't strings or numbers;
   // invalid types are ignored.
-  React.Children.forEach(children, function(child) {
+  ReactAsmo.Children.forEach(children, function(child) {
     if (child == null) {
       return;
     }
@@ -404,7 +404,7 @@ function resolve(
   child: mixed,
   context: Object,
 |} {
-  while (React.isValidElement(child)) {
+  while (ReactAsmo.isValidElement(child)) {
     // Safe because we just checked it's an element.
     let element: ReactElement = (child: any);
     let Component = element.type;
@@ -902,7 +902,7 @@ class ReactDOMServerRenderer {
       ({child: nextChild, context} = resolve(child, context, this.threadID));
       if (nextChild === null || nextChild === false) {
         return '';
-      } else if (!React.isValidElement(nextChild)) {
+      } else if (!ReactAsmo.isValidElement(nextChild)) {
         if (nextChild != null && nextChild.$$typeof != null) {
           // Catch unexpected special types early.
           const $$typeof = nextChild.$$typeof;
@@ -1055,7 +1055,7 @@ class ReactDOMServerRenderer {
           case REACT_MEMO_TYPE: {
             const element: ReactElement = ((nextChild: any): ReactElement);
             let nextChildren = [
-              React.createElement(
+              ReactAsmo.createElement(
                 elementType.type,
                 Object.assign({ref: element.ref}, element.props),
               ),

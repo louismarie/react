@@ -21,8 +21,8 @@ const importSideEffects = Object.freeze({
 
 // Bundles exporting globals that other modules rely on.
 const knownGlobals = Object.freeze({
-  react: 'React',
-  'react-dom': 'ReactDOM',
+  react: 'ReactAsmo',
+  'react-dom': 'ReactDOMAsmo',
   scheduler: 'Scheduler',
   'scheduler/tracing': 'SchedulerTracing',
 });

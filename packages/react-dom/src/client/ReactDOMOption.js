@@ -22,7 +22,7 @@ function flattenChildren(children) {
   // Note that this would throw on non-element objects.
   // Elements are stringified (which is normally irrelevant
   // but matters for <fbt>).
-  React.Children.forEach(children, function(child) {
+  ReactAsmo.Children.forEach(children, function(child) {
     if (child == null) {
       return;
     }
@@ -46,7 +46,7 @@ export function validateProps(element: Element, props: Object) {
     // TODO: this seems like it could cause a DEV-only throw for hydration
     // if children contains a non-element object. We should try to avoid that.
     if (typeof props.children === 'object' && props.children !== null) {
-      React.Children.forEach(props.children, function(child) {
+      ReactAsmo.Children.forEach(props.children, function(child) {
         if (child == null) {
           return;
         }

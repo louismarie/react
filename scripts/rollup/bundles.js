@@ -68,7 +68,7 @@ const bundles = [
     ],
     moduleType: ISOMORPHIC,
     entry: 'react',
-    global: 'React',
+    global: 'ReactAsmo',
     externals: [],
   },
 
@@ -87,7 +87,7 @@ const bundles = [
     ],
     moduleType: RENDERER,
     entry: 'react-dom',
-    global: 'ReactDOM',
+    global: 'ReactDOMAsmo',
     externals: ['react'],
   },
 
